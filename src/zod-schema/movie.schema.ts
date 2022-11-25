@@ -2,8 +2,6 @@ import {z} from 'zod';
 
 export const addMovieSchema = z.object({
     body: z.object({
-
-        id: z.string({required_error: "ID is required"}),
         name: z
         .string({required_error: "Name is required"})
         .min(3),
@@ -20,7 +18,6 @@ export const addMovieSchema = z.object({
 
 export const updateMovieSchema = z.object({
     body: z.object({
-        id: z.string({required_error: "ID is required"}),
         name: z
         .string({required_error: "Name is required"})
         .min(3),

@@ -13,14 +13,29 @@ datasource db {
 model movies {
   id String  @id @default(uuid())
   name String @unique
-  genre  Role  @default(Drama)
+  genre  Role  
   rating Int
   duration Int
   createdat DateTime
+}
+
+model users {
+  id String  @id @default(uuid())
+  username String 
+  password  Int 
+  email   String @unique
+  role    Rule
+  joiningYear String
+  age  Int
 }
 
 enum Role {
   Drama 
   Action
   Comady
+}
+
+enum Rule {
+  Admin
+  User
 }

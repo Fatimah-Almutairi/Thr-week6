@@ -37,4 +37,5 @@ router.get('/:rating', validate(getMovieRatingSchema), getMovieRating);
 
 
 
+
 export default router;
