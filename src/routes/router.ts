@@ -1,6 +1,21 @@
 import express from 'express';
-import { addMovie, deleteMovie, getMovie, updateMovie } from '../controller/controller';
-import { movies, SchemaType } from '../zod-schema/schema';
+import { 
+    addMovie, 
+    deleteMovie, 
+    getMovie, 
+    getMovieGenre, 
+    getMovieName, 
+    getMovieRating, 
+    updateMovie 
+} from '../controller/movie.controller';
+import {
+    addMovieSchema, 
+    updateMovieSchema, 
+    deleteMovieSchema,
+    getMovieNameSchema,
+    getMovieGenreSchema,
+    getMovieRatingSchema
+} from '../zod-schema/movie.schema';
 import validate from "../middleware/validate";
 
 
@@ -8,11 +23,18 @@ const router = express.Router();
 
 router.get('/', getMovie);
 
-router.post('/', validate(movies), addMovie);
+router.post('/', validate(addMovieSchema), addMovie);
 
-router.put('/:id', validate(movies), updateMovie);
+router.put('/:name', validate(updateMovieSchema), updateMovie);
 
-router.delete('/:id', validate(movies), deleteMovie);
+router.delete('/:name', validate(deleteMovieSchema), deleteMovie);
+
+router.get('/:name', validate(getMovieNameSchema), getMovieName);
+
+router.get('/:genre', validate(getMovieGenreSchema), getMovieGenre);
+
+router.get('/:rating', validate(getMovieRatingSchema), getMovieRating);
+
 
 
 export default router;
